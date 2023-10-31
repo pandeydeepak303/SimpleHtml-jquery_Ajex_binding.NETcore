@@ -1,0 +1,94 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Home</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="~/css/StyleSheet.css" />
+</head>
+<body>
+    <div class="container">
+        <div class="center">
+            <h1>Login</h1>
+            <div class="form-group text-center">
+                <span id="error-message" style="color:red;"></span>
+            </div>
+            <form action="#" id="login-form" method="POST">
+                <div class="txt_field">
+                    <input id="Username" type="text" name="text" required>
+                    <span></span>
+                    <label>Username</label>
+                </div>
+                <div class="txt_field">
+                    <input id="Password" type="password" name="password" required>
+                    <span></span>
+                    <label>Password</label>
+                </div>
+                <div class="pass">Forget Password?</div>
+                <input name="submit" type="Submit" value="Login">
+                <div class="signup_link">
+                    Not a Member ? <a href="/Account/Regisrtration">Signup</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+
+
+
+        //AJAX--
+        //$(document).ready(function () {
+        //    $("#login-form").submit(function (e) {
+        //        e.preventDefault();
+        //        var formData = {
+        //            Username: $("#Username").val(),
+        //            Password: $("#Password").val()
+        //        };
+        //        $.ajax({
+        //            type: "POST",
+        //            url: "/Account/Login",
+        //            data: formData,
+        //            success: function (data) {
+        //                if (data.redirectUrl) {
+        //                    window.location.href = data.redirectUrl;
+        //                } else {
+        //                    $("#error-message").text("Invalid username or password");
+        //                }
+        //            },
+        //            error: function (error) {
+        //                $("#error-message").text("An error occurred. Please try again.");
+        //            }
+        //        });
+        //    });
+        //});
+        
+
+
+        //JQuery--
+            $(document).ready(function () {
+                $("#login-form").submit(function (e) {
+                    e.preventDefault();
+                    var formData = {
+                        Username: $("#Username").val(),
+                        Password: $("#Password").val()
+                    };
+                    $.post("/Account/Login", formData, function (data) {
+                        if (data.redirectUrl) {
+                            window.location.href = data.redirectUrl;
+
+                        } else {
+                            $("#error-message").text("Invalid username or password");
+                        }
+                    }).fail(function () {
+                        $("#error-message").text("An error occurred. Please try again.");
+                    });
+                });
+            });
+  
+    </script>
+
+</body>
+</html>

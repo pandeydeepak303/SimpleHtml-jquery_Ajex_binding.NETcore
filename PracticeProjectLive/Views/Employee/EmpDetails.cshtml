@@ -1,0 +1,65 @@
+﻿@model PracticeProjectLive.Models.ViewModel
+
+@{
+    ViewData["Title"] = "EmpDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <h1 class="mt-5">Employee Details</h1>
+
+    @if (Model != null)
+    {
+        <div class="card mt-4">
+            <div class="card-body">
+                <dl class="row">
+                    <dt class="col-sm-4">Employee Name:</dt>
+                    <dd class="col-sm-8">@Model.EmployeeName</dd>
+
+                    <dt class="col-sm-4">Address:</dt>
+                    <dd class="col-sm-8">@Model.Address</dd>
+
+                    <dt class="col-sm-4">Qualification:</dt>
+                    <dd class="col-sm-8">@Model.Qualification</dd>
+
+                    <dt class="col-sm-4">Education:</dt>
+                    <dd class="col-sm-8">@Model.Education</dd>
+
+                    <dt class="col-sm-4">Percentage:</dt>
+                    <dd class="col-sm-8">@Model.Percentage</dd>
+
+                    <dt class="col-sm-4">Company:</dt>
+                    <dd class="col-sm-8">@Model.Company.Cname</dd>
+
+                    <dt class="col-sm-4">Department:</dt>
+                    <dd class="col-sm-8">@Model.Department.DepName</dd>
+
+                    <dt class="col-sm-4">Qualification Year:</dt>
+                    <dd class="col-sm-8">@Model.QualificationYear</dd>
+                </dl>
+
+
+                <div style=" display:flex">
+                    <div class="mt-4">
+                        <a href="@Url.Action("EmpIndex", "Employee")" class="btn btn-primary">Back to Home</a>
+                    </div>
+
+                    <div  style="margin-left:12px;" class="mt-4" >
+                        <a href="@Url.Action("EditEmployee", "Employee", new { id = Model.Employee.Eid})" class="btn btn-primary">Edit</a>
+                    </div>
+                </div>
+            </div>
+        </div>     
+    }
+</div>
+
+
+<style>
+
+    body {
+        background: linear-gradient(to bottom, #34c9eb 50%, white 50%);
+    }
+
+</style>
+                   
